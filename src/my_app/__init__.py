@@ -6,6 +6,6 @@ import my_app
 PACKAGE_ROOT = Path(my_app.__file__).absolute().parent
 ROOT_DIR = PACKAGE_ROOT.parent.parent
 
-# Import the VESRION
+# Import the VERSION
 with open(ROOT_DIR / "VERSION", "r") as file:
     __version__ = file.read().strip()
