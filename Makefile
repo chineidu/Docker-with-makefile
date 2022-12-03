@@ -34,7 +34,7 @@ lint:
 
 checks: test lint mypy clean
 
-run-checks:
+run-checks: # opt is the name of the docker's workdir
 	# Use the current working directory as the docker's volume. 
 	docker run --rm -it --name run-checks -v $(shell pwd):/opt -t fastapi_app make checks
 
