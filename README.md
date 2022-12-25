@@ -12,24 +12,30 @@ Make sure you have the latest version of PyPA’s build installed.
 
 ```console
 # Mac/Linux
-python3 -m pip install --upgrade build
+$ python3 -m pip install --upgrade build
 ```
 
 ```console
 # Windows
-py -m pip install --upgrade build
+$ py -m pip install --upgrade build
 ```
 
 Now run this command from the same directory where **`pyproject.toml`** is located:
 
 ```console
 # Mac/Linux
-python3 -m build
+$ python3 -m build
 ```
 
 ```console
 # Windows
-py -m build
+$ py -m build
+```
+
+## Install The Package Locally
+
+```console
+$ pip install -e .
 ```
 
 For more info, check [here](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
