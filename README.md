@@ -4,6 +4,18 @@ This repo shows a simple template for using Docker with a Python app.
 
 It also shows how to build Python packages locally.
 
+## Build A Docker Image
+
+```console
+$ docker build -t <tag_name> -f Dockerfile .
+```
+
+## Run A Docker Image
+
+```console
+$ docker run -it [-p <port:port>] <tag_name>
+```
+
 ## Generating distribution archives
 
 These are archives that are uploaded to the Python Package Index and can be installed by pip.
