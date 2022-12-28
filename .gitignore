@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 sample.py
+sample
 sample1.py
