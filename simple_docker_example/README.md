@@ -1,4 +1,4 @@
-# Development Using Docker
+# A Simple Development Example Using Docker
 
 * Project structure
 
