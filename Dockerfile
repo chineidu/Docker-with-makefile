@@ -16,4 +16,4 @@ RUN pip install --no-cache-dir --upgrade -r test_requirements.txt \
 COPY ./src .
 
 # Entry point. Run the app
-CMD ["python", "./my_app/main.py"]
+CMD ["python", "./my_app/main.py", "host", "0.0.0.0","--port", "8005"]
