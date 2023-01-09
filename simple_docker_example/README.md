@@ -7,7 +7,6 @@
 ├── README.md
 ├── environment
 │   └── Dockerfile
-├── file.py
 └── simple_app
     ├── __init__.py
     ├── app.py
