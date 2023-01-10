@@ -1,3 +1,4 @@
+import typing as tp
 import logging.config
 from rich.logging import RichHandler
 from pathlib import Path
@@ -25,6 +26,14 @@ def custom_logger():
     logging.config.fileConfig(Path(CONFIG_DIR, "logging.config"))
     logger = logging.getLogger()
     logger.handlers[0] = RichHandler(markup=True)  # set rich handler
+    return logger
+
+
+def set_up_logger(delim: str = "::") -> tp.Any:
+    """This is used to create a basic logger."""
+    format_ = f"[%(levelname)s] {delim} %(asctime)s {delim} %(message)s"
+    logging.basicConfig(level=logging.INFO, format=format_)
+    logger = logging.getLogger(__name__)
     return logger
 
 
