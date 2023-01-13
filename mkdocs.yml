@@ -1,0 +1,14 @@
+site_name: My Docs
+site_url: https://neidu.com/
+repo_url: https://github.com/chineidu/Docker-with-makefile/
+nav:
+  - Home: index.md
+  - How-To Guides: how_to_guide.md
+  - cli_tool:
+      - arg_parser: cli_tool/arg_parser.md
+      - click_example: cli_tool/click_example.md
+theme: 
+  name: "material"
+
+plugins:
+  - mkdocstrings
