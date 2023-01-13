@@ -1,15 +1,18 @@
-[build-system]
-requires = ["setuptools>=42.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [tool.pytest.ini_options]
 addopts = "--cov=src"
 testpaths = [
     "tests",
 ]
+markers = [
+    "training: tests that involve training",
+]
+
+# Pytest coverage
+[tool.coverage.run]
+omit = ["src/my_app/__init__.py"]
 
 [tool.mypy]
-mypy_path = "src"
+mypy_path = "src|logging_example|cli_tool"
 check_untyped_defs = true
 ignore_missing_imports = true
 no_implicit_optional = true
@@ -18,3 +21,32 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 no_implicit_reexport = true
+
+
+
+# Black formatting
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+      .eggs         # exclude a few common directories in the
+    | .git          # root of the project
+    | .hg
+    | .mypy_cache
+    | .tox
+    | venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+'''
+
+# iSort
+[tool.isort]
+profile = "black"
+line_length = 80
+multi_line_output = 3
+include_trailing_comma = true
+virtual_env = "venv"
