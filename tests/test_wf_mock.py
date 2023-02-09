@@ -1,17 +1,41 @@
 from unittest import mock
 import pytest
 
-from src.die import guess_number
+from src.die import guess_number, roll_die
+from src.employees import get_employees_data
+
+
+data = {
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "employee_name": "Tiger Nixon",
+            "employee_salary": 320800,
+            "employee_age": 61,
+            "profile_image": "",
+        },
+        {
+            "id": 2,
+            "employee_name": "Garrett Winters",
+            "employee_salary": 170750,
+            "employee_age": 63,
+            "profile_image": "",
+        },
+    ],
+}
 
 
 def test_roll_die() -> None:
     """This tests the roll dice function."""
     # Given
     expected_result = 4
+    # Mock "roll_die"
     mock_roll_dice = mock.Mock(name="roll_dice", return_value=4)
+    roll_die = mock_roll_dice
 
     # When
-    result = mock_roll_dice()
+    result = roll_die()
 
     # Then
     assert expected_result == result
@@ -41,8 +65,7 @@ def test_guess_number(mock_roll_die) -> None:
 def test_guess_number_2(mock_roll_die, input_, output) -> None:
     """This tests the roll dice function."""
     # Given
-    expected_result = output
-    number = 4
+    expected_result, number = output, 4
     mock_roll_die.return_value = number
 
     # When
@@ -53,19 +76,24 @@ def test_guess_number_2(mock_roll_die, input_, output) -> None:
     mock_roll_die.assert_called()
 
 
-@mock.patch("")
-def test_get_employees_data(response_data:dict) -> None:
+@mock.patch("src.employees.requests.get")
+def test_get_employees_data(mock_requests_get: mock.Mock) -> None:
     """This tests the get_employees_data function."""
-    # Given
-    status_code = 200
-    status = "success"
-    data_size = 2
+    # Given# Mock `requests.get`
+    mock_resp = mock.Mock(
+        name="mock response",
+        **{"status_code": 200, "json.return_value": data},
+    )
+    mock_requests_get.return_value = mock_resp
+    status_code, status = 200, "success"
+    data_size, url = 2, "https://dummy.restapiexample.com/api/v1/employees"
 
     # When
-    result = mock_get_employees_data()
+    result = get_employees_data()
 
     # Then
-    assert mock_get_employees_data.json() == response_data
-    assert mock_get_employees_data.status_code == 200
-    assert mock_get_employees_data.json()["status"] == status
-    assert len(mock_get_employees_data.json()["data"]) == data_size
+    assert result.json() == data
+    assert result.status_code == status_code
+    assert result.json()["status"] == status
+    assert len(result.json()["data"]) == data_size
+    mock_requests_get.assert_called_with(url)

@@ -13,9 +13,9 @@ def client() -> Generator:
         app.dependency_overrides = {}
 
 
+@pytest.fixture()
 def response_data() -> dict:
     """This returns the mock response data."""
-    # response.json()
     _response = {
         "status": "success",
         "data": [
@@ -36,3 +36,4 @@ def response_data() -> dict:
         ],
     }
     return _response
+
