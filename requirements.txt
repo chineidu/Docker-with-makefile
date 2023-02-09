@@ -3,4 +3,5 @@ fastapi==0.87.0
 httpx==0.23.1
 pandas==1.5.0
 pip-chill==1.0.1
+pytest
 uvicorn==0.20.0
