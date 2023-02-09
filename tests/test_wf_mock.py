@@ -27,7 +27,7 @@ data = {
 
 
 def test_roll_die() -> None:
-    """This tests the roll dice function."""
+    """This tests the roll die function."""
     # Given
     expected_result = 4
     # Mock "roll_die"
@@ -42,11 +42,11 @@ def test_roll_die() -> None:
     mock_roll_dice.assert_called()
 
 
-# Call the function from the location of guess_number()
+# Mock `roll_die()`. Use the location of the dependent function
 # i.e the location where another function is using it.
 @mock.patch("src.die.roll_die")
 def test_guess_number(mock_roll_die) -> None:
-    """This tests the roll dice function."""
+    """This tests the roll die function."""
     # Given
     expected_result = "You won!"
     number = 4
@@ -65,21 +65,22 @@ def test_guess_number(mock_roll_die) -> None:
 def test_guess_number_2(mock_roll_die, input_, output) -> None:
     """This tests the roll dice function."""
     # Given
-    expected_result, number = output, 4
+    number = 4
     mock_roll_die.return_value = number
 
     # When
     result = guess_number(number=input_)
 
     # Then
-    assert expected_result == result
+    assert output == result
     mock_roll_die.assert_called()
 
 
+# Mock `requests.get`
 @mock.patch("src.employees.requests.get")
 def test_get_employees_data(mock_requests_get: mock.Mock) -> None:
     """This tests the get_employees_data function."""
-    # Given# Mock `requests.get`
+    # Given
     mock_resp = mock.Mock(
         name="mock response",
         **{"status_code": 200, "json.return_value": data},
