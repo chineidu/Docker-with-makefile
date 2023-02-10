@@ -45,8 +45,8 @@ def test_roll_die() -> None:
 # Mock `roll_die()`. Use the location of the dependent function
 # i.e the location where another function is using it.
 @mock.patch("src.die.roll_die")
-def test_guess_number(mock_roll_die) -> None:
-    """This tests the roll die function."""
+def test_guess_number(mock_roll_die: mock.Mock) -> None:
+    """This tests the guess_number function."""
     # Given
     expected_result = "You won!"
     number = 4
@@ -62,8 +62,8 @@ def test_guess_number(mock_roll_die) -> None:
 
 @pytest.mark.parametrize("input_, output", [(1, "You lost"), (2, "You lost"), (4, "You won!")])
 @mock.patch("src.die.roll_die")
-def test_guess_number_2(mock_roll_die, input_, output) -> None:
-    """This tests the roll dice function."""
+def test_guess_number_2(mock_roll_die: mock.Mock, input_: int, output: str) -> None:
+    """This tests the guess_number function."""
     # Given
     number = 4
     mock_roll_die.return_value = number
