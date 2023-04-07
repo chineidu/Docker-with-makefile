@@ -1,4 +1,4 @@
-.PHONY: setup-venv setup clean-pyc clean-test test mypy lint check
+.PHONY: setup-venv setup clean-pyc clean-test test mypy lint checks
 
 setup-venv: # Create virtual env. You have to run this first!
 	python3 -m venv .venv && . .venv/bin/activate
@@ -24,7 +24,8 @@ clean: clean-pyc clean-test
 	rm -rf logs/
 
 test: clean # src is the source code
-	. .venv/bin/activate && py.test tests -v --cov=src --cov-report=term-missing --cov-fail-under 80
+	. .venv/bin/activate && py.test tests -v --cov=src \
+	--cov-report=term-missing --cov-fail-under 80
 
 mypy:
 	. .venv/bin/activate && mypy src
@@ -33,10 +34,3 @@ lint:
 	. .venv/bin/activate && black src && isort src
 
 checks: test lint mypy clean
-
-run-checks: # opt is the name of the docker's workdir
-	# Use the current working directory as the docker's volume. 
-	docker run --rm -it --name run-checks -v $(shell pwd):/opt -t fastapi_app make checks
-
-bash:
-	docker run --rm -it --name run-checks -v $(shell pwd):/opt -t fastapi_app bash
