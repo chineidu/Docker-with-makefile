@@ -1,4 +1,4 @@
-import typing as tp
+from typing import Any, Optional
 
 from fastapi import FastAPI, Request, status
 from fastapi.responses import HTMLResponse
@@ -25,7 +25,7 @@ class InputSchema(BaseModel):
 
 
 class DBSchema(BaseModel):
-    key: tp.Dict[str, InputSchema]
+    key: dict[str, InputSchema]
 
 
 fake_db = {
@@ -45,7 +45,7 @@ fake_db = {
 
 
 @app.get("/")
-def index(request: Request) -> tp.Any:
+def index(request: Request) -> Any:
     """Basic HTML response."""
 
     body = """
@@ -66,17 +66,17 @@ def index(request: Request) -> tp.Any:
 
 
 @app.get("/fetch-all/", response_model=None, status_code=status.HTTP_200_OK)
-def fetch_all() -> tp.Dict:
+def fetch_all() -> dict[str, Any]:
     """This is used to fetch all the tracks."""
     return fake_db
 
 
 @app.get(
     "/fetch-one/{id}/",
-    response_model=tp.Optional[InputSchema],
+    response_model=Optional[InputSchema],
     status_code=status.HTTP_200_OK,
 )
-def fetch_one(id: int) -> tp.Optional[tp.Dict]:  # type: ignore
+def fetch_one(id: int) -> Optional[dict[str, Any]]:  # type: ignore
     for idx, val in fake_db.items():
         if int(idx) == id:
             return val
@@ -85,7 +85,7 @@ def fetch_one(id: int) -> tp.Optional[tp.Dict]:  # type: ignore
 
 
 @app.post("/add-track/{id}", response_model=InputSchema, status_code=status.HTTP_200_OK)
-def add_track(id: int, data: InputSchema) -> tp.Any:  # type: ignore
+def add_track(id: int, data: InputSchema) -> Any:  # type: ignore
     """This is used to add a new track and other details
     to the fake_db."""
     ids = fake_db.keys()

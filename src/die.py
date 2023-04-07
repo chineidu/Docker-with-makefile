@@ -1,5 +1,5 @@
-
 from src.utils import roll_die
+
 
 def guess_number(*, number: int) -> str:
     """This returns `You won!` if you guessed the
