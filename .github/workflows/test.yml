@@ -1,0 +1,29 @@
+name: Run Tests
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          make setup_venv
+
+      - name: Run Tests and Code Quality Checks
+        run: |
+          make checks
+
+      - name: Data Validation
+        run: |
+          make data_test
