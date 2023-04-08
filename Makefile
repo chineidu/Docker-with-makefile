@@ -21,7 +21,7 @@ clean: clean_pyc clean_test
 	rm -rf logs/
 
 test: clean # src is the source code
-	. .venv/bin/activate && py.test tests -v --cov=src \
+	. .venv/bin/activate && py.test tests -vv --cov=src \
 	--cov-report=term-missing --cov-fail-under 80
 
 data_test:
