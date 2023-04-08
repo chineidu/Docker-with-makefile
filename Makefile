@@ -1,9 +1,10 @@
 .PHONY: setup_venv clean_pyc clean_test test mypy lint data_test checks
 
 setup_venv: # Create virtual env. You have to run this first!
-	python3 -m venv .venv && . .venv/bin/activate
-	pip install --upgrade pip
-	pip install -e ".[dev]"
+	python3 -m venv .venv && . .venv/bin/activate \
+	&& pip install --upgrade pip \
+	&& pip install -e ".[dev]"
+
 
 clean_pyc:
 	find . -name '*.pyc' -exec rm -f {} +
