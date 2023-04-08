@@ -3,7 +3,7 @@
 setup_venv: # Create virtual env. You have to run this first!
 	python3 -m venv .venv && . .venv/bin/activate
 	pip install --upgrade pip
-	pip install -r test_requirements.txt
+	pip install -e ".[dev]"
 
 clean_pyc:
 	find . -name '*.pyc' -exec rm -f {} +
