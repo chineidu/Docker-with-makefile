@@ -27,7 +27,7 @@ test: clean # src is the source code
 
 data_test:
 	. .venv/bin/activate && dvc pull data/salary_data \
-	&& cd tests/great_expectations \
+	&& cd tests/great_expectations/great_expectations \
 	&& great_expectations checkpoint run salary_data
 
 mypy:
