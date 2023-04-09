@@ -24,6 +24,12 @@ jobs:
         run: |
           make checks
 
+      - name: Setup DVC
+        run: |
+          dvc remote modify myremote gdrive_use_service_account true
+          dvc remote modify myremote --local \
+              gdrive_service_account_json_file_path {{ secrets.GDRIVE_CREDENTIALS_DATA }}
+
       - name: Data Validation
         run: |
           make data_test
