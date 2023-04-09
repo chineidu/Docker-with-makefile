@@ -87,12 +87,13 @@ validations:
 """
 ```
 
-- Ensure that this the **`data_asset_name`**  and **`expectation_suite_name`** are correct!
+- Ensure that the **`data_asset_name`**  and **`expectation_suite_name`** are correct!
 - Execute the checkpoint by running:
 
 ```bash
 great_expectations checkpoint run <checkpoint_name>
 
+# e.g
 great_expectations checkpoint run salary_data
 ```
 
