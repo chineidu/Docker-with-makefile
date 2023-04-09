@@ -1,7 +1,7 @@
 name: Run Tests
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "practice"]
   pull_request:
     branches: ["main"]
 
@@ -19,17 +19,24 @@ jobs:
       - name: Install dependencies
         run: |
           make setup_venv
-
       - name: Run Tests and Code Quality Checks
         run: |
           make checks
 
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "secrets.json"
+          json: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+
       - name: Setup DVC.
         run: |
           . .venv/bin/activate
+          echo "Setting dgdrive_use_service_account true ..."
           dvc remote modify myremote gdrive_use_service_account true
           dvc remote modify myremote --local \
-              gdrive_service_account_json_file_path dvc-project-383101-f35837803686.json
+              gdrive_service_account_json_file_path secrets.json
 
       - name: Data Validation
         run: |
