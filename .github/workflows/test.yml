@@ -24,7 +24,7 @@ jobs:
         run: |
           make checks
 
-      - name: Setup DVC
+      - name: Setup DVC.
         run: |
           . .venv/bin/activate
           dvc remote modify myremote gdrive_use_service_account true
