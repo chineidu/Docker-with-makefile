@@ -38,6 +38,5 @@ jobs:
           wc -l data/salary.csv
           echo "Changing directory to GX directory ..."
           cd tests/great_expectations/great_expectations
-          
-          great_expectations checkpoint run salary_data
           echo "Running GX ..."
+          great_expectations checkpoint run salary_data
