@@ -33,4 +33,9 @@ jobs:
 
       - name: Data Validation
         run: |
-          make data_test
+          . .venv/bin/activate && dvc pull data/salary_data
+          echo "Pulling data from remote storage ..."
+          cd tests/great_expectations/great_expectations
+          echo "Changing directory to GX directory ..."
+          great_expectations checkpoint run salary_data
+          echo "Running GX ..."
