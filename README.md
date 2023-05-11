@@ -7,13 +7,13 @@ It also shows how to build Python packages locally.
 ## Build A Docker Image
 
 ```console
-$ docker build -t <tag_name> -f Dockerfile .
+docker build -t <tag_name> -f Dockerfile .
 ```
 
 ## Run A Docker Image
 
 ```console
-$ docker run -it [-p <port:port>] <tag_name>
+docker run -it [-p <port:port>] <tag_name>
 ```
 
 ## Generating distribution archives
@@ -47,7 +47,49 @@ $ py -m build
 ## Install The Package Locally
 
 ```console
-$ pip install -e .
+pip install -e .
 ```
 
 For more info, check [here](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+
+## AWS CLI
+
+### List Files In An S3 Bucket
+
+```bash
+aws s3 ls s3://yourBucketName --recursive --human-readable --summarize
+```
+
+### To list only the filenames in a specific folder, add the `--prefix` parameter to the command:
+
+```bash
+aws s3api list-objects --bucket YOUR_BUCKET \
+    --prefix "my-folder/" --output text \
+    --query "Contents[].{Key: Key}"
+```
+
+### Upload A File To S3
+
+```bash
+aws s3 cp abs_path s3://yourBucketName/
+```
+
+### Uploading Multiple Files and Folders to S3 Recursively
+
+```bash
+aws s3 cp abs_path s3://yourBucketName/ --recursive
+```
+
+### Download a file from S3
+
+```bash
+aws s3 cp s3://yourBucketName abs_path
+
+```
+
+### Download Multiple Files From S3
+
+```bash
+aws s3 cp s3://yourBucketName abs_path --recursive
+
+```
