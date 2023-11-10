@@ -43,7 +43,7 @@ if __name__ == "__main__":
 > To use, run:
 
 ```console
-python cli_tool/click_example.py load-data 
+python cli_tool/click_example.py load-data
 ```
 
 * Result
@@ -55,7 +55,7 @@ python cli_tool/click_example.py load-data
 > To use, run:
 
 ```console
-PATTERN="..."        
+PATTERN="..."
 python cli_tool/click_example.py train-model
 ```
 

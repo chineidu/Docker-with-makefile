@@ -1,7 +1,9 @@
-import typing as tp
 import logging.config
-from rich.logging import RichHandler
+import typing as tp
 from pathlib import Path
+
+from rich.logging import RichHandler
+
 
 def custom_logger():
     """This is used to create a custom logger that saves the output
@@ -37,7 +39,7 @@ def set_up_logger(delim: str = "::") -> tp.Any:
     return logger
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logger = custom_logger()
 
     logger.debug("Used for debugging your code.")
